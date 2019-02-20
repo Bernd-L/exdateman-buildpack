@@ -36,6 +36,10 @@ arrow() {
   sed -u 's/^/-----> /'
 }
 
+replaceDot() {
+  sed -u 's/_42d_/\./g'
+}
+
 # Make some space
 echo | indent
 
@@ -62,6 +66,9 @@ for Current_file in $ENV_DIR/WF_42_*; do
 
   # Increase the files counter
   ((Files++))
+
+  # Replace _42d_ with .
+   "$Current_file" | replaceDot
 
   # Use wildcards as literals
   set -f
