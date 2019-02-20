@@ -57,8 +57,8 @@ set +f
 # Log written file # TODO remove debug
 ls $ENV_DIR
 
-# Only iterate over the config var-files prefixed "WF_-"
-for Current_file in $ENV_DIR/*; do
+# Only iterate over the config var-files prefixed "WF_42_"
+for Current_file in $ENV_DIR/WF_42_*; do
 
   # Increase the files counter
   ((Files++))
@@ -67,7 +67,7 @@ for Current_file in $ENV_DIR/*; do
   set -f
 
   # Split the Current_file into parts
-  Name_parts=(${Current_file//_-/ })
+  Name_parts=(${Current_file//_42_/ })
 
   # Variable to hold full destination path
   Full_dest_path=""
