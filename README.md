@@ -1,6 +1,6 @@
 # ExDateMan Buildpack
 
-(Work in progress)
+> **(Work in progress)**
 
 The purpose of this Heroku Buildpack is to write files in the deployed project before compilation.
 
