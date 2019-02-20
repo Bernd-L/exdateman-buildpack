@@ -1,0 +1,59 @@
+#!/bin/sh
+
+# MIT License
+
+# Copyright (c) 2019 Bernd L.
+
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+# Log start of script
+echo "-----> Writing files from config vars"
+
+# Functions
+indent() {
+  sed -u 's/^/       /'
+}
+
+parsePath() {
+  sed -u 's/_-/'
+}
+
+# Assign variables
+BUILD_DIR=$1
+CACHE_DIR=$2
+ENV_DIR=$3
+
+# Iterate over config var-files
+
+  # Parse the desired path
+
+  # Check if file exists
+  if [ ! -e "$Path_with_name"]; then
+  
+    # If not, create a new one
+    touch "$Path_with_name"
+  
+  # End if
+  fi
+
+  # Write file contents
+  echo "$Current_file" > "$Path_with_name"
+
+# End loop
+
