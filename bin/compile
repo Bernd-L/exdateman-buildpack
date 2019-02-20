@@ -36,6 +36,9 @@ arrow() {
   sed -u 's/^/-----> /'
 }
 
+# Make some space
+echo | indent
+
 # Log start of script
 echo "Writing files from config vars" | arrow
 
@@ -69,7 +72,7 @@ for Current_file in $ENV_DIR/WF_-*; do
   # Iterate over the split parts
   for i in "${!Name_parts[@]}"; do
     # Log written file # TODO remove debug
-    echo "Part number $i is: ${Name_parts[i]}"
+    echo "Part number $i is: ${Name_parts[i]}" | indent
 
     if (($i != 0)); then
       Full_dest_path="$Full_dest_path/${Name_parts[i]}"
@@ -98,7 +101,8 @@ for Current_file in $ENV_DIR/WF_-*; do
 done
 
 # Log successful files
-echo "Wrote $Files_done files successfully.\n" | arrow
+echo "Wrote $Files_done files." | arrow
+echo | indent
 
 # Reset settings
 set +f
