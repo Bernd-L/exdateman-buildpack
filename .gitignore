@@ -1,5 +1,3 @@
-#!/bin/sh
-
 # MIT License
 
 # Copyright (c) 2019 Bernd L.
@@ -22,36 +20,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-############################################
-# This file is used to test the buildpack. #
-############################################
+######################################
+# This file ignores the test output. #
+######################################
 
-# Heroku dev center: "Usage: bin/compile BUILD_DIR CACHE_DIR ENV_DIR"
-
-# Change directory
-DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
-cd $DIR
-
-# Reset the Build dir
-echo [TEST] Resetting the Build folder
-
-# Empty the Build dir
-rm -r Build/* >/dev/null
-
-# Create some test files
-touch Build/logo.png
-mkdir Build/src
-touch Build/src/app.ts
-mkdir Build/src/environments
-touch Build/src/environments/environment.ts
-
-# Keep the Build folder in git
-touch Build/your_project_files
-
-# Execute detect
-echo [TEST] running bin/detect
-../bin/detect
-
-# Execute compile
-echo [TEST] running bin/compile
-../bin/compile Build Cache Environment
+# Ignore test output
+test/Build/*
+!test/Build/your_project_files

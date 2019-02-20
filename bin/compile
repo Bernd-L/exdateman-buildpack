@@ -50,8 +50,11 @@ Files=0
 # Only iterate over the config var-files prefixed "WF_-"
 for Current_file in $ENV_DIR/WF_-*; do
 
-  # Parse the desired path
-  set -f # Use wildcards as literals
+  # Increase the files counter
+  ((Files++))
+
+  # Use wildcards as literals
+  set -f
 
   # Split the Current_file into parts
   Name_parts=(${Current_file//_-/ })
@@ -63,25 +66,17 @@ for Current_file in $ENV_DIR/WF_-*; do
   for i in "${!Name_parts[@]}"; do
     if (($i != 0)); then
       Full_dest_path="$Full_dest_path/${Name_parts[i]}"
-      echo "We're at index $i" | indent # TODO remove debug
     fi
   done
 
-  echo "Full path is: $Full_dest_path" | indent # TODO remove debug
-
-  # Check if file exists
-  if [ ! -e "$Path_with_name"]; then
-
-    # If not, create a new one
-    touch "$Path_with_name"
-
-  # End if
-  fi
+  # Make folder structure
+  mkdir -p "$(dirname "$BUILD_DIR$Full_dest_path")"
 
   # Write file contents
-  echo "$Current_file" | indent # TODO remove debug
-  echo "$Current_file" >"$BUILD_DIR$Path_with_name"
+  cat "$Current_file" >"$BUILD_DIR$Full_dest_path"
 
+  # Log written file
+  echo "Wrote file number $Files: $Full_dest_path" | indent
   # End loop
 done
 
