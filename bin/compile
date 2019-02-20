@@ -67,11 +67,11 @@ for Current_file in $ENV_DIR/WF_-*; do
 
   # Iterate over the split parts
   for i in "${!Name_parts[@]}"; do
+    # Log written file # TODO remove debug
+    echo "Part number $i is: ${Name_parts[i]}"
+
     if (($i != 0)); then
       Full_dest_path="$Full_dest_path/${Name_parts[i]}"
-
-      # Log written file # TODO remove debug
-      echo "Part number $i is: ${Name_parts[i]}"
     fi
   done
 
