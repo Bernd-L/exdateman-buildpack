@@ -16,6 +16,15 @@ For every file to be written into the deployed project directory, the following 
    3. `file.config.ts` is the name of the file to be written including its extension
 2. Paste the content of your file into the variable (can be multi-line)
 
+### Example
+
+When using Angular, one may want to set their environment configuration files without exposing the API endpoint to the public via GitHub.
+This use case is present in the [ExDateMan repository](https://github.com/Bernd-L/exDateMan), and is the reason for the existence of this buildpack.
+
+The `environment.prod.ts` file in `/src/environments/environments/` would be created by this build pack using the following Heroku config variable: `WF_-src_-environments_-environment.prod.ts`.
+
+Just paste what would be the usually the files contents into the config var.
+
 ## Installation
 
 1. Maybe fork this repository (only if you want to change the folder delimiter `_-` to something else)
