@@ -89,7 +89,7 @@ for Current_file in $ENV_DIR/*; do
   echo "Writing file number $Files: $Full_dest_path" | indent
 
   # Log written file # TODO remove debug
-  echo "Writing to path number $Files: $BUILD_DIR" | indent
+  # echo "Writing to path number $Files: $BUILD_DIR" | indent
 
   # Write file contents
   cat "$Current_file" >"$BUILD_DIR$Full_dest_path"
