@@ -36,10 +36,6 @@ arrow() {
   sed -u 's/^/-----> /'
 }
 
-replaceDot() {
-  sed -u 's/_42d_/\./g'
-}
-
 # Make some space
 echo | indent
 
@@ -59,41 +55,25 @@ Files_done=0
 set +f
 
 # Log written file # TODO remove debug
-ls $ENV_DIR
+echo "All config vars: " $(ls $ENV_DIR)
 
 # Only iterate over the config var-files prefixed "WF_42_"
-for Current_file in $ENV_DIR/WF_42_*; do
+for Current_file in $ENV_DIR/WF_*; do
 
   # Increase the files counter
   ((Files++))
 
-  # Replace _42d_ with .
-   "$Current_file" | replaceDot
-
   # Use wildcards as literals
   set -f
 
-  # Split the Current_file into parts
-  Name_parts=(${Current_file//_42_/ })
-
   # Variable to hold full destination path
-  Full_dest_path=""
+  Full_dest_path=$(head -n 1 $Current_file)
 
   # Log written file # TODO remove debug
   echo "Current_file ($Files): $Current_file" | indent
 
-  # Iterate over the split parts
-  for i in "${!Name_parts[@]}"; do
-    # Log written file # TODO remove debug
-    echo "Part number $i is: ${Name_parts[i]}" | indent
-
-    if (($i != 0)); then
-      Full_dest_path="$Full_dest_path/${Name_parts[i]}"
-    fi
-  done
-
   # Make folder structure
-  mkdir -p "$(dirname "$BUILD_DIR$Full_dest_path")"
+  mkdir -p "$(dirname "$BUILD_DIR/$Full_dest_path")"
 
   # Log written file # TODO remove debug
   echo "Writing file number $Files: $Full_dest_path" | indent
@@ -101,8 +81,8 @@ for Current_file in $ENV_DIR/WF_42_*; do
   # Log written file # TODO remove debug
   # echo "Writing to path number $Files: $BUILD_DIR" | indent
 
-  # Write file contents
-  cat "$Current_file" >"$BUILD_DIR$Full_dest_path"
+  # Write file contents; skipping the first line
+  tail -n +2 "$Current_file" >"$BUILD_DIR/$Full_dest_path"
 
   # Log written file
   echo "Wrote file number $Files: $Full_dest_path" | indent

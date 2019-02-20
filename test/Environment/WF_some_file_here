@@ -1,3 +1,4 @@
+src/some/folder/here/file.json
 {
   "note": "this test-file should get copied to Build/src/some/folder/here/file.json",
   "name": "this is my epic JSON file",
