@@ -46,6 +46,7 @@ ENV_DIR=$3
 
 # Count the number of files written
 Files=0
+Files_done=0
 
 # Don't use wildcards as literals
 set +f
@@ -89,8 +90,15 @@ for Current_file in $ENV_DIR/WF_-*; do
 
   # Log written file
   echo "Wrote file number $Files: $Full_dest_path" | indent
+
+  # Increase the files_done counter
+  ((Files_done++))
+
   # End loop
 done
+
+# Log successful files
+echo "Wrote $Files_done files successfully.\n" | arrow
 
 # Reset settings
 set +f
