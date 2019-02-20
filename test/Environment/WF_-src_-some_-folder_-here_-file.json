@@ -1,0 +1,14 @@
+{
+  "note": "this test-file should get copied to Build/src/some/folder/here/file.json",
+  "name": "this is my epic JSON file",
+  "words": [
+    "it",
+    "even",
+    "has",
+    "an",
+    "array"
+  ],
+  "fancy number": 42.42,
+  "true?": true,
+  "_-_-_-": "Hmmmmmmm..."
+}

@@ -1,0 +1,4 @@
+{
+  "note": "This file should be ignored by the buildpack.",
+  "hostname": "db.example.com"
+}

@@ -22,38 +22,71 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-# Log start of script
-echo "-----> Writing files from config vars"
+#####################################################
+# This file is the main script of the buildpack,    #
+# it writes the files specified in the config vars. #
+#####################################################
 
 # Functions
 indent() {
   sed -u 's/^/       /'
 }
 
-parsePath() {
-  sed -u 's/_-/'
+arrow() {
+  sed -u 's/^/-----> /'
 }
+
+# Log start of script
+echo "Writing files from config vars" | arrow
 
 # Assign variables
 BUILD_DIR=$1
 CACHE_DIR=$2
 ENV_DIR=$3
 
-# Iterate over config var-files
+# Count the number of files written
+Files=0
+
+# Only iterate over the config var-files prefixed "WF_-"
+for Current_file in $ENV_DIR/WF_-*; do
 
   # Parse the desired path
+  set -f # Use wildcards as literals
+
+  # Split the Current_file into parts
+  Name_parts=(${Current_file//_-/ })
+
+  # Variable to hold full destination path
+  Full_dest_path=""
+
+  # Iterate over the split parts
+  for i in "${!Name_parts[@]}"; do
+    if (($i != 0)); then
+      Full_dest_path="$Full_dest_path/${Name_parts[i]}"
+      echo "We're at index $i" | indent # TODO remove debug
+    fi
+  done
+
+  echo "Full path is: $Full_dest_path" | indent # TODO remove debug
 
   # Check if file exists
   if [ ! -e "$Path_with_name"]; then
-  
+
     # If not, create a new one
     touch "$Path_with_name"
-  
+
   # End if
   fi
 
   # Write file contents
-  echo "$Current_file" > "$Path_with_name"
+  echo "$Current_file" | indent # TODO remove debug
+  echo "$Current_file" >"$BUILD_DIR$Path_with_name"
 
-# End loop
+  # End loop
+done
 
+# Reset settings
+set +f
+
+# Clean exit
+exit 0
