@@ -8,26 +8,42 @@ It is designed to work with TypeScript/node.js projects. Others should work as w
 
 For every file to be written into the deployed project directory, the following steps must be followed:
 
-1. Create a Heroku config variable named `WF_-path_-to_-file.config.ts` where
-   1. `WF_-` must always be pretended (this marks the config variable as a file to be written)
-   2. `_-` is used to mark the end of a folder name (like `/` in a conventional filesystem)
-   3. `file.config.ts` is the name of the file to be written including its extension
-2. Paste the content of your file into the variable (can be multi-line)
+1. Create a Heroku config variable which name starts with `WF_`; the remaining part of the name doesn't matter
+2. Paste the full path of the file to be created relative to your project root into the first line (don't prepend `/`)
+3. Paste the content of your file into the variable (can be multi-line) into the second line (can be empty)
+
+Note: Only use normal characters for the name of your variables:
+
+- A-Z
+- a-z
+- underline
+- 0-9
 
 ### Example
 
 When using Angular, one may want to set their environment configuration files without exposing the API endpoint to the public via GitHub.
 This use case is present in the [ExDateMan repository](https://github.com/Bernd-L/exDateMan), and is the reason for the existence of this buildpack.
 
-The `environment.prod.ts` file in `/src/environments/environments/` would be created by this build pack using the following Heroku config variable: `WF_-src_-environments_-environment.prod.ts`.
+The `environment.prod.ts` file in `PROJECT_ROOT/src/environments/environments/` would be created by this build pack using the following Heroku config variable: `WF_Angular_prod_env` with the following content:
 
-Just paste what would be the usually the files contents into the config var.
+```TS
+src/environments/environment.prod.ts
+// This is a test file to which should get copied to Build/src/environments/environment.prod.ts
+
+export const environment = {
+  production: true,
+  baseUrl: "/",
+  greeting: "Hello there!"
+};
+```
+
+The first line will be omitted form the output file.
+It's just used to tell the buildpack where to create (or replace) the file.
 
 ## Installation
 
-1. Maybe fork this repository (only if you want to change the folder delimiter `_-` to something else)
-2. Add the GitHub repository URL as a buildpack to your Heroku app
-3. Move up the newly added buildpack
+1. Add the GitHub repository URL as a buildpack to your Heroku app
+2. Move up the newly added buildpack (It should be above any buildpack that relies on the files being created)
 
 ## Copyright notice
 
