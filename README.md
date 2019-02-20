@@ -1,4 +1,4 @@
-# ExDateMn Buildpack
+# ExDateMan Buildpack
 
 (Work in progress)
 
