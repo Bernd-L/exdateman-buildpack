@@ -55,7 +55,7 @@ Files_done=0
 set +f
 
 # Only iterate over the config var-files prefixed "WF_-"
-for Current_file in $ENV_DIR/WF_-*; do
+for Current_file in $ENV_DIR/WF\_\-*; do
 
   # Increase the files counter
   ((Files++))
