@@ -47,6 +47,9 @@ ENV_DIR=$3
 # Count the number of files written
 Files=0
 
+# Don't use wildcards as literals
+set +f
+
 # Only iterate over the config var-files prefixed "WF_-"
 for Current_file in $ENV_DIR/WF_-*; do
 

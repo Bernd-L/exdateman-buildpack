@@ -27,7 +27,7 @@
 ############################################################################
 
 # Print framework name
-echo "Write-files-from-config-vars"
+echo "(using exdateman-buildpack)"
 
 # This build pack can be used for any app
 exit 0
