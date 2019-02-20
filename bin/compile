@@ -75,6 +75,12 @@ for Current_file in $ENV_DIR/WF_-*; do
   # Make folder structure
   mkdir -p "$(dirname "$BUILD_DIR$Full_dest_path")"
 
+  # Log written file # TODO remove debug
+  echo "Writing file number $Files: $Full_dest_path" | indent
+
+  # Log written file # TODO remove debug
+  echo "Writing to path number $Files: $BUILD_DIR" | indent
+
   # Write file contents
   cat "$Current_file" >"$BUILD_DIR$Full_dest_path"
 
