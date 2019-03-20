@@ -24,7 +24,7 @@ Note: Only use normal characters for the name of your variables:
 When using Angular, one may want to set their environment configuration files without exposing the API endpoint to the public via GitHub.
 This use case is present in the [ExDateMan repository](https://github.com/Bernd-L/exDateMan), and is the reason for the existence of this buildpack.
 
-The `environment.prod.ts` file in `PROJECT_ROOT/src/environments/environments/` would be created by this build pack using the following Heroku config variable: `WF_Angular_prod_env` with the following content:
+The `environment.prod.ts` file in `PROJECT_ROOT/src/environments/` would be created by this build pack using the following Heroku config variable: `WF_Angular_prod_env` with the following content:
 
 ```TS
 src/environments/environment.prod.ts
