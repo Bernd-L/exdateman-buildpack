@@ -28,7 +28,7 @@ The `environment.prod.ts` file in `PROJECT_ROOT/src/environments/` would be crea
 
 ```TS
 src/environments/environment.prod.ts
-// This is a test file to which should get copied to Build/src/environments/environment.prod.ts
+// This is a test file which should get copied to Build/src/environments/environment.prod.ts
 
 export const environment = {
   production: true,
