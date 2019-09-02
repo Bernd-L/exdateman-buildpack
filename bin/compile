@@ -86,7 +86,7 @@ echo | indent
 # Get some node & npm going
 touch ~/.bashrc
 curl https://raw.githubusercontent.com/creationix/nvm/v0.30.2/install.sh | bash
-. .bashrc
+. ~/.bashrc
 nvm install 11.15.0
 node -v
 npm -v
