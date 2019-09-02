@@ -71,7 +71,7 @@ for Current_file in $ENV_DIR/WF_*; do
   # Log written file
   echo "Wrote file number $Files: $Full_dest_path" | indent
 
-# End loop
+  # End loop
 done
 
 # Make some space
@@ -82,6 +82,19 @@ echo "Wrote $Files files." | arrow
 
 # Make some space
 echo | indent
+
+# Get some node & npm going
+touch .bashrc
+curl https://raw.githubusercontent.com/creationix/nvm/v0.30.2/install.sh | bash
+. .bashrc
+nvm install 11.15.0
+node -v
+npm -v
+
+# Build frontend
+cd frontend
+npm run build
+cd ..
 
 # Clean exit
 exit 0
