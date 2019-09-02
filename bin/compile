@@ -92,7 +92,7 @@ node -v
 npm -v
 
 # Build frontend
-cd frontend
+cd $BUILD_DIR/frontend
 npm run build
 cd ..
 
